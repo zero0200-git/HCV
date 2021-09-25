@@ -1,0 +1,157 @@
+body{
+margin:0;
+background-color:#000;
+}
+img {
+width:100%;
+}
+.nc{
+user-select:none;
+-o-user-select:none;
+-ms-user-select:none;
+-moz-user-select:none;
+-khtml-user-select:none;
+-webkit-user-select:none;
+-webkit-touch-callout:none;
+}
+#navWarpper{
+background-color:#22222277;
+color:#ddd;
+position:sticky;
+top:0;
+height:45px;
+overflow:hidden;
+width:100%;
+display:flex;
+justify-content:center;
+align-items: center;
+z-index:1;
+}
+#imgWarpper .L{
+display:block;
+position:fixed;
+top:0;
+bottom:0;
+right:50%;
+width:100%;
+z-index:0;
+}
+#imgWarpper .R{
+display:block;
+position:fixed;
+top:0;
+bottom:0;
+left:50%;
+width:100%;
+z-index:0;
+}
+#folderListWarpper, #settingsWarpper{
+display:none;
+position:fixed;
+top:0; bottom:0; left:0; right:0;
+background-color:#000000;
+background-color:#00000055;
+z-index:1000;
+}
+#folderList, #settingContainer{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+justify-content:space-evenly;
+background:#aaaaaa;
+margin:10% auto;
+padding:5px;
+border-radius:10px;
+max-height:70vh;
+overflow:auto;
+}
+#settingContainer{
+width:200px;
+}
+#folderList{
+width:80%;
+align-items:flex-end;
+}
+#folderListHead{
+flex-basis:100%;
+display:inherit;
+align-items:baseline;
+justify-content:space-between;
+}
+.folderListNode{
+width:100px;
+min-width:50px;
+background-color:#888888;
+background-color:#00000055;
+border-radius:inherit;
+margin:5px;
+padding:0;
+border:none;
+}
+.folderListNode img{
+height:80px;
+object-fit:cover;
+object-position:center;
+min-width:50px;
+border-radius:10px 10px 0 0;
+}
+.folderListNode p{
+color:#fff;
+margin:0;
+padding:5px;
+text-align:initial;
+}
+.text{
+padding:5px;
+}
+.button{
+padding:5px;
+background-color:transparent;
+border:solid 1px;
+}
+.button svg{
+fill:none;
+stroke:#ddd;
+stroke-width:1;
+width:30px;
+height:30px;
+}
+.switch{
+position:relative;
+display:inline-block;
+width:40px;
+height:20px;
+}
+.switch input{ 
+opacity:0;
+width:0;
+height:0;
+}
+.sli{
+position:absolute;
+cursor:pointer;
+top:0;left:0;right:0;bottom:0;
+background-color:#ccc;
+-webkit-transition:.25s;
+transition:.25s;
+border-radius:10px;
+}
+.sli:before{
+position:absolute;
+content:"";
+height:100%;
+width:60%;
+top:0;left:0;bottom:0;
+background-color:#888;
+-webkit-transition:.25s;
+transition:.25s;
+border-radius:10px;
+}
+.switch input:checked + .sli{
+background-color:#00cc88;
+}
+.switch input:checked + .sli:before{
+-webkit-transform: translateX(20px);
+-ms-transform: translateX(20px);
+transform: translateX(20px);
+}

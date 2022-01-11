@@ -1,0 +1,29 @@
+Options -Indexes
+RewriteEngine on
+
+RewriteCond %{HTTP:CF-Visitor} '"scheme":"http"' [OR]
+RewriteCond %{HTTPS} !=on
+RewriteRule . - [env=HTTP:http]
+RewriteCond %{HTTP:CF-Visitor} '"scheme":"https"' [OR]
+RewriteCond %{HTTPS} =on
+RewriteRule . - [env=HTTP:https]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+RewriteCond %{THE_REQUEST} ^(.+)\.php([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.php$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+RewriteCond %{THE_REQUEST} ^(.+)\.asp([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.asp$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+RewriteCond %{THE_REQUEST} ^(.+)\.htm([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.htm$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+RewriteCond %{THE_REQUEST} ^(.+)\.html([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.html$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+RewriteCond %{THE_REQUEST} ^(.+)\.aspx([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.aspx$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+RewriteCond %{THE_REQUEST} ^(.+)\.jsp([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.jsp$ %{ENV:HTTP}://%{HTTP_HOST}/$1 [R=302,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)index /$1 [R=302,NC,L]

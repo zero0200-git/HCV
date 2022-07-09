@@ -102,9 +102,6 @@ echo stSwitch("Auto hide navigation(touchscreen)","autoHideNaviTouchSwitch");
 </div>
 </div></div>
 </div>
-<div class="containerSubHead">
-<button class="button" id="settingsApply">Apply</button>
-</div>
 </div></div>
 
 <div id="folderListWarpper" class="nc containerWarpper">

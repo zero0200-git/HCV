@@ -578,7 +578,7 @@ settingsEl.querySelector('[data-key="'+settingsVa+'"]').classList.add("seced");
 settingsEl.querySelector(".seTed").dataset.selectedKey=settingsEl.querySelector(".seced").dataset.key;
 settingsEl.querySelector(".seTed").innerHTML=settingsEl.querySelector(".seced").innerHTML;
 }
-else if(settingsTy=="color"){console.log(settingsEl);console.log('va: ');console.log(settingsVa);console.log(settingsEl.dataset.cssQuery);
+else if(settingsTy=="color"){
 if(typeof settings.style!="object"){settings.style={};}
 if(typeof settingsVa!="object"&&(settingsVa[settingsEl.dataset.cssQuery]!=null&&settingsVa[settingsEl.dataset.cssQuery]!="")){
 settingsVa={};
@@ -640,26 +640,27 @@ hcv.read=JSON.parse(localStorage.getItem("read"));
 }
 function changeStyle(){
 let settingsObjName="settings";
-let sty;
+let stySh;
 let styVa=hcv[settingsObjName].style;
 let styVaK=Object.keys(styVa);
-if(document.styleSheets.length==1){sheet=document.styleSheets[0]}
+
+if(document.styleSheets.length==1){stySh=document.styleSheets[0]}
 else if(document.styleSheets.length>1){
 for(let i=0;i<document.styleSheets.length;i++){
-if(document.styleSheets[i].href!=null&&document.styleSheets[i].href.match(window.location.origin+window.location.pathname)!=null){sty=document.styleSheets[i];}
+if(document.styleSheets[i].href!=null&&document.styleSheets[i].href.match(window.location.origin+window.location.pathname)!=null){stySh=document.styleSheets[i];}
 }
-if(typeof sheet!="object"){
-sty=document.styleSheets[document.styleSheets.length-1];
+if(typeof stySh!="object"){
+stySh=document.styleSheets[document.styleSheets.length-1];
 }
 }
 else{
 if(typeof CSSStyleSheet=="function"){
-sty=new CSSStyleSheet();
-document.adoptedStyleSheets=[sty];
+stySh=new CSSStyleSheet();
+document.adoptedStyleSheets=[stySh];
 } else{
 let st=document.createElement("style");
 document.body.appendChild(st);
-sty=st.sheet;
+stySh=st.sheet;
 }
 }
 
@@ -668,7 +669,7 @@ let qa=Object.keys(styVa[styVaK[s]]);
 for(let q=0;q<qa.length;q++){
 let query=qa[q];
 let cs=Object.keys(styVa[styVaK[s]][query]);
-for(let c=0;c<cs.length;c++){sty.insertRule(query+' {'+cs[c]+': '+styVa[styVaK[s]][qa[q]][cs[c]]+'}',sty.cssRules.length);}
+for(let c=0;c<cs.length;c++){stySh.insertRule(query+' {'+cs[c]+': '+styVa[styVaK[s]][qa[q]][cs[c]]+'}',stySh.cssRules.length);}
 }
 }
 }

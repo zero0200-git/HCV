@@ -742,7 +742,7 @@ let dt=new Date();
 let dl=document.createElement("a");
 dl.href="data:application/json,"+encodeURIComponent(JSON.stringify(hcv[hcvVar]));
 dl.target="_blank";
-dl.download="hcv-"+hcvVar+'-'+dt.getFullYear()+'-'+dt.getMonth()+'-'+dt.getDate()+".json";
+dl.download="hcv-"+hcvVar+'-'+dt.getFullYear().toString()+'-'+(dt.getMonth()+1).toString().padStart(2,'0')+'-'+dt.getDate().toString().padStart(2,'0')+".json";
 dl.style.display="none";
 document.querySelector("#popWarpper").appendChild(dl);
 dl.click();

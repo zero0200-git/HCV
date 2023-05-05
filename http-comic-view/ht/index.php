@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8">
+<head><title>Comic view</title><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes">
-<title>Comic view</title><?php 
+<?php if($_SERVER['HTTPS']&&$_SERVER['HTTPS']==='on'){echo '<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">';}
 function stSwitch($category,$name,$desc,$stName,$enable=null){
 $c=$category;$n=str_replace("\n","<br>",htmlentities($name,ENT_QUOTES));$d=htmlentities($desc,ENT_QUOTES);$j=$stName;$e=strtolower($enable);
 if($e==true||$e=="true"||$e==1||$e=="check"||$e=="checked"){$e="checked";}else{$e="";}
@@ -69,15 +69,19 @@ function stNote($category,$name,$desc,$stName){
 $c=$category;$n=str_replace("\n","<br>",htmlentities($name,ENT_QUOTES));$d=htmlentities($desc,ENT_QUOTES);$j=$stName;
 return '<div class="settingsList" data-settings-category="'.$c.'" data-settings-type="note" data-settings-name="'.$j.'"><div class="settingsName" tabindex="0" title="'.$d.'"><div>'.$n.'</div><div>'.str_replace("\n","<br>",$d).'</div></div></div>';
 }
+function stFuncButton($category,$name,$desc,$stName,$displayText,$funcName){
+$c=$category;$n=str_replace("\n","<br>",htmlentities($name,ENT_QUOTES));$d=htmlentities($desc,ENT_QUOTES);$j=$stName;$t=$displayText;$f=$funcName;
+return '<div class="settingsList" data-settings-category="'.$c.'" data-settings-type="funcButton" data-settings-name="'.$j.'" data-func="'.$f.'"><div class="settingsName" tabindex="0" title="'.$d.'"><div>'.$n.'</div><div>'.str_replace("\n","<br>",$d).'</div></div><div class="buttonCon"><button class="buttonText" id="'.$j.'" tabindex="0">'.$t.'</button></div></div>';
+}
 
-?>
+?></head>
 <body><div class="loading"style="position:fixed;background:#000;top:0;bottom:0;left:0;right:0;z-index:10000;text-align:center;">Loading ...<script>function load(){document.removeEventListener("DOMContentLoaded",load);load=undefined;setTimeout(function(){document.querySelector(".loading").remove()},600)};document.addEventListener("DOMContentLoaded",load)</script></div>
-<div class="nc" id="navWarpper" data-hide="false">
-<button class="button" id="prev" style="margin-left:auto;"><svg viewBox="0 0 24 24"><path d="M20,3 l-16,9 l16,9"/></svg></button>
-<button class="button" id="gotoOpen">Loading...</button>
+<div class="nc t" id="navWarpper" data-hide="false">
+<button class="button" id="prev"><svg viewBox="0 0 24 24"><path d="M20,3 l-16,9 l16,9"/></svg></button>
+<button class="button" id="gotoOpen"><span data-value="current">N</span><span data-value="space">/</span><span data-value="all">A</span></button>
 <button class="button" id="next"><svg viewBox="0 0 24 24"><path d="M3,3 l16,9 l-16,9"/></svg></button>
-<button class="button" id="folderOpen"><svg viewBox="0 0 32 32"><path d="m4,13 h24 v12 a1 1,0,0,1,-1 1 h-22 a1 1,0,0,1,-1 -1z l0,-7 a1 1,0,0,1,1 -1 h8 a0.75 0.5,0,0,1,0.75 0.5 l1,2 a0.75 0.5,0,0,0,0.75 0.5 h11.5 a1 1,0,0,1,1 1 v4z"/></svg></button>
-<button class="button" id="settingsOpen" style="margin-right:auto;"><svg viewBox="0 0 32 32"><path d="M29.181 19.070c-1.679-2.908-0.669-6.634 2.255-8.328l-3.145-5.447c-0.898 0.527-1.943 0.829-3.058 0.829-3.361 0-6.085-2.742-6.085-6.125h-6.289c0.008 1.044-0.252 2.103-0.811 3.070-1.679 2.908-5.411 3.897-8.339 2.211l-3.144 5.447c0.905 0.515 1.689 1.268 2.246 2.234 1.676 2.903 0.672 6.623-2.241 8.319l3.145 5.447c0.895-0.522 1.935-0.82 3.044-0.82 3.35 0 6.067 2.725 6.084 6.092h6.289c-0.003-1.034 0.259-2.080 0.811-3.038 1.676-2.903 5.399-3.894 8.325-2.219l3.145-5.447c-0.899-0.515-1.678-1.266-2.232-2.226zM16 22.479c-3.578 0-6.479-2.901-6.479-6.479s2.901-6.479 6.479-6.479c3.578 0 6.479 2.901 6.479 6.479s-2.901 6.479-6.479 6.479z"/></svg></button>
+<button class="button" id="folderOpen"><svg viewBox="0 0 32 32"><path d="m28,13 v12 a1 1,0,0,1,-1 1 h-22 a1 1,0,0,1,-1 -1 v-19 a1 1,0,0,1,1 -1 h8 a0.75 0.5,0,0,1,0.75 0.5 l1,2 a0.75 0.5,0,0,0,0.75 0.5 h11.5 a1 1,0,0,1,1 1z h-24"/></svg></button>
+<button class="button" id="settingsOpen"><svg viewBox="0 0 32 32"><path d="M29.181 19.070c-1.679-2.908-0.669-6.634 2.255-8.328l-3.145-5.447c-0.898 0.527-1.943 0.829-3.058 0.829-3.361 0-6.085-2.742-6.085-6.125h-6.289c0.008 1.044-0.252 2.103-0.811 3.070-1.679 2.908-5.411 3.897-8.339 2.211l-3.144 5.447c0.905 0.515 1.689 1.268 2.246 2.234 1.676 2.903 0.672 6.623-2.241 8.319l3.145 5.447c0.895-0.522 1.935-0.82 3.044-0.82 3.35 0 6.067 2.725 6.084 6.092h6.289c-0.003-1.034 0.259-2.080 0.811-3.038 1.676-2.903 5.399-3.894 8.325-2.219l3.145-5.447c-0.899-0.515-1.678-1.266-2.232-2.226zM16 22.479c-3.578 0-6.479-2.901-6.479-6.479s2.901-6.479 6.479-6.479c3.578 0 6.479 2.901 6.479 6.479s-2.901 6.479-6.479 6.479z"/></svg></button>
 <div class="navHide">
 <button class="button"><svg viewBox="0 0 24 24"><path d="M2,12 h20"/></svg></button>
 <button class="button" style="display:none;"><svg viewBox="0 0 24 24"><path d="M2,12 h20 m-10,-10 v20"/></svg></button>
@@ -112,15 +116,21 @@ else{$settings[$name]=$settingsD[$name];}
 
 foreach(array_keys($settings) as $stname){
 $type=$settings[$stname]["type"];
-if($settings[$stname]["clientEnable"]!=true){continue;}
-else if($type=="switch"){echo stSwitch($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["value"]);}
-else if($type=="select"){echo stSelect($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["selection"], $settings[$stname]["value"]);}
-else if($type=="color"){echo stColor($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["query"], $settings[$stname]["css"], $settings[$stname]["value"]);}
-else if($type=="dataImport"){echo stDataimport($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["display"], $settings[$stname]["value"]);}
-else if($type=="dataExport"){echo stDataExport($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["display"], $settings[$stname]["value"]);}
-else if($type=="key"){echo stKey($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["value"]);}
-else if($type=="text"){echo stText($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"], $settings[$stname]["value"], $settings[$stname]["display"]);}
-else if($type=="note"){echo stNote($settings[$stname]["category"], $settings[$stname]["fullname"], $settings[$stname]["description"], $settings[$stname]["name"]);}
+$category=$settings[$stname]["category"];
+$fullname=$settings[$stname]["fullname"];
+$description=$settings[$stname]["description"];
+$tags=$settings[$stname]["tags"];
+$name=$settings[$stname]["name"];
+if($settings[$stname]["clientEnable"]!=true||(($_SERVER['HTTPS']&&$_SERVER['HTTPS']==='on')!=true&&in_array("service",$tags))){continue;}
+else if($type=="switch"){echo stSwitch($category, $fullname, $description, $name, $settings[$stname]["value"]);}
+else if($type=="select"){echo stSelect($category, $fullname, $description, $name, $settings[$stname]["selection"], $settings[$stname]["value"]);}
+else if($type=="color"){echo stColor($category, $fullname, $description, $name, $settings[$stname]["query"], $settings[$stname]["css"], $settings[$stname]["value"]);}
+else if($type=="dataImport"){echo stDataimport($category, $fullname, $description, $name, $settings[$stname]["display"], $settings[$stname]["value"]);}
+else if($type=="dataExport"){echo stDataExport($category, $fullname, $description, $name, $settings[$stname]["display"], $settings[$stname]["value"]);}
+else if($type=="key"){echo stKey($category, $fullname, $description, $name, $settings[$stname]["value"]);}
+else if($type=="text"){echo stText($category, $fullname, $description, $name, $settings[$stname]["value"], $settings[$stname]["display"]);}
+else if($type=="note"){echo stNote($category, $fullname, $description, $name);}
+else if($type=="funcButton"){echo stFuncButton($category, $fullname, $description, $name, $settings[$stname]["display"], $settings[$stname]["function"]);}
 }
 ?>
 </div>
@@ -134,15 +144,16 @@ else if($type=="note"){echo stNote($settings[$stname]["category"], $settings[$st
 <div class="containerTitle">Opening: <span id="currentFolder"></span><br><span id="currentDisplayP" style="display:none;">Displaying: <span id="currentDisplay"></span></span></div>
 <div class="containerControl"><button class="button" id="folderClose" title="Close"><?php echo svg('close');?></button>
 <button class="button" id="folderReload" title="Reload folder list"><svg viewBox="0 0 32 32"><path d="m28.4,16 l-4,-2 l4,2 l2,-4z m-0.4,0 a12 12,0,0,0,-12 -12 a12 12,0,0,0,0 24"></path></svg></button>
-<button class="button" id="folderGoBack" title="Go back to upper folder"><svg viewBox="0 0 32 32"><path d="M16,4 l-6,6 l6,-6 l6,6 z v24"/></svg></button></div>
-</div><div class="containerCon scFlex" id="folderListContainer"></div>
+<button class="button" id="folderGoBack" title="Go back to upper folder"><svg viewBox="0 0 32 32"><path d="m16,4 l-6,6 l6,-6 l6,6 z v24"/></svg></button>
+<button class="button" id="folderSettings" title="Folder display settings" style="display:none"><svg viewBox="0 0 32 32"><path d="m28,13 v12 a1 1,0,0,1,-1 1 h-22 a1 1,0,0,1,-1 -1 v-19 a1 1,0,0,1,1 -1 h8 a0.75 0.5,0,0,1,0.75 0.5 l1,2 a0.75 0.5,0,0,0,0.75 0.5 h11.5 a1 1,0,0,1,1 1z m-20.5,-1.5 l3,5 v6 h3 v-6 l3,-5z m10,3 h8z m0,3 h6z m0,3 h4z"/></svg></button></div>
+</div><div class="containerCon scFlex"><div id="folderListSettings"></div><div id="folderListContainer"></div></div>
 <div class="containerSubHead"></div>
 </div></div>
 
 <div id="popWarpper" class="nc" style="display:none;"></div>
 
-<div id="imgWarpper">
-<div class="imgContainer nc" data-img-size="100"></div></div>
+<div id="imgWarpper" data-img-size="100">
+<div class="imgContainer nc"></div></div>
 
 </body>
 <link type="text/css" rel="stylesheet" href="style.css">

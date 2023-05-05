@@ -6,6 +6,7 @@
 		"fullname": "Fullscreen",
 		"description": "Enable-Disable Fullscreen",
 		"type": "switch",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": false
 	},
@@ -15,6 +16,7 @@
 		"fullname": "Unlock Zoom",
 		"description": "Unlock more zoom on pinch to zoom enable device(eg. smartphone), May not work",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": false
 	},
@@ -24,6 +26,7 @@
 		"fullname": "Image Preload(previous)",
 		"description": "Change number of preload image",
 		"type": "select",
+		"tags": [],
 		"clientEnable": true,
 		"value": "2",
 		"selection": {"0":"off", "1":"1", "2":"2", "3":"3", "4":"4", "5":"5", "6":"6", "7":"7", "8":"8", "9":"9", "10":"10"}
@@ -34,6 +37,7 @@
 		"fullname": "Image Preload(next)",
 		"description": "Change number of preload image",
 		"type": "select",
+		"tags": [],
 		"clientEnable": true,
 		"value": "5",
 		"selection": {"0":"off", "1":"1", "2":"2", "3":"3", "4":"4", "5":"5", "6":"6", "7":"7", "8":"8", "9":"9", "10":"10"}
@@ -44,6 +48,7 @@
 		"fullname": "Screen Tapping",
 		"description": "Change tapping to next image selection or turn off",
 		"type": "select",
+		"tags": [],
 		"clientEnable": true,
 		"value": "rl",
 		"selection": {"lr":"Left of image", "rl":"Right of image", "False": "Off"}
@@ -54,6 +59,7 @@
 		"fullname": "Auto Change Folder",
 		"description": "Change to \\"previous/next\\" folder automatically if go \\"back/next\\" on \\"first/last\\" page",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": true
 	},
@@ -63,6 +69,7 @@
 		"fullname": "Show folder full path",
 		"description": "Show full path of current folder in folder Select",
 		"type": "switch",
+		"tags": ["shortcut","folderSetting"],
 		"clientEnable": true,
 		"value": false
 	},
@@ -72,6 +79,7 @@
 		"fullname": "Show picture fullname",
 		"description": "Show fullname of current image and current image number of current folder in folder Select",
 		"type": "switch",
+		"tags": ["shortcut","folderSetting"],
 		"clientEnable": true,
 		"value": false
 	},
@@ -81,6 +89,27 @@
 		"fullname": "Display all folder",
 		"description": "Display all folder include all sub-folder in folder Select (*Very lag or maybe crash browser if have a lot of image folder)",
 		"type": "switch",
+		"tags": ["folderSetting"],
+		"clientEnable": true,
+		"value": false
+	},
+	"folderRecusiveSwitch": {
+		"name": "folderRecusiveSwitch",
+		"category": "Experimental",
+		"fullname": "Display recusive folder",
+		"description": "Display recusive from current folder",
+		"type": "switch",
+		"tags": ["folderSetting"],
+		"clientEnable": true,
+		"value": false
+	},
+	"displayFromParentSwitch": {
+		"name": "displayFromParentSwitch",
+		"category": "Experimental",
+		"fullname": "Display from parent folder",
+		"description": "Display folder from current folder parent in folder Select",
+		"type": "switch",
+		"tags": ["folderSetting"],
 		"clientEnable": true,
 		"value": false
 	},
@@ -90,6 +119,7 @@
 		"fullname": "Show image folder first",
 		"description": "Show folder that have image first in folder Select",
 		"type": "switch",
+		"tags": ["folderSetting"],
 		"clientEnable": true,
 		"value": true
 	},
@@ -99,6 +129,7 @@
 		"fullname": "Show image in folder Select",
 		"description": "Show (first) image of folder in folder Select",
 		"type": "switch",
+		"tags": ["folderSetting"],
 		"clientEnable": true,
 		"value": true
 	},
@@ -108,8 +139,30 @@
 		"fullname": "Show loading popup",
 		"description": "Only show image preloading for now",
 		"type": "switch",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": false
+	},
+	"disableAnimation": {
+		"name": "disableAnimation",
+		"category": "Display",
+		"fullname": "Disable animation",
+		"description": "Disable all animation *except \\"Show loading popup\\"*",
+		"type": "switch",
+		"tags": ["shortcut"],
+		"clientEnable": true,
+		"value": false
+	},
+	"animationTime": {
+		"name": "animationTime",
+		"category": "Display",
+		"fullname": "Animation time",
+		"description": "Animation run time in milliseconds",
+		"type": "select",
+		"tags": [],
+		"clientEnable": true,
+		"value": "400",
+		"selection": {"1000":"1000", "800":"800", "600":"600", "500":"500", "400":"400", "300":"300", "250":"250", "200":"200", "150":"150", "100":"100", "50":"50"}
 	},
 	"hideNaviSwitch": {
 		"name": "hideNaviSwitch",
@@ -117,6 +170,7 @@
 		"fullname": "Hide \\"hide navigation\\" button",
 		"description": "Recommend to turn on if \\"Auto hide navigation\\" enable",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": true
 	},
@@ -126,6 +180,7 @@
 		"fullname": "Auto hide navigation",
 		"description": "Auto hide navigation when cannot detect mouse movement within 3 seconds",
 		"type": "switch",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": true
 	},
@@ -135,6 +190,7 @@
 		"fullname": "Auto hide navigation(touchscreen)",
 		"description": "Auto hide navigation when cannot detect movement on touchscreen (*Need to enable normal \\"Auto hide navigation\\")",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": false
 	},
@@ -144,6 +200,7 @@
 		"fullname": "Save settings",
 		"description": "Save settings config in this browser",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": true
 	},
@@ -153,6 +210,7 @@
 		"fullname": "Save read progress",
 		"description": "Save read progress in this browser",
 		"type": "switch",
+		"tags": [],
 		"clientEnable": true,
 		"value": false
 	},
@@ -162,6 +220,7 @@
 		"fullname": "Read progress background color",
 		"description": "Read progress background color top left of element in folder Select",
 		"type": "color",
+		"tags": [],
 		"clientEnable": true,
 		"value": "#000000",
 		"css": "background",
@@ -173,6 +232,7 @@
 		"fullname": "Image count background color",
 		"description": "Image count background color top left of element in folder Select",
 		"type": "color",
+		"tags": [],
 		"clientEnable": true,
 		"value": "#000000",
 		"css": "background",
@@ -184,10 +244,41 @@
 		"fullname": "Folder count background color",
 		"description": "Inside folder count background color top left of element in folder Select",
 		"type": "color",
+		"tags": [],
 		"clientEnable": true,
 		"value": "#000000",
 		"css": "background",
 		"query": ".folderListNode>[data-node-type=info]>[data-node-type=folder]"
+	},
+	"twoPageSwitch": {
+		"name": "twoPageSwitch",
+		"category": "Experimental",
+		"fullname": "Display two page",
+		"description": "Display two page at same time",
+		"type": "switch",
+		"tags": ["shortcut"],
+		"clientEnable": true,
+		"value": false
+	},
+	"twoPageOffsetSwitch": {
+		"name": "twoPageOffsetSwitch",
+		"category": "Experimental",
+		"fullname": "Display two page offset",
+		"description": "Offset two page display",
+		"type": "switch",
+		"tags": [],
+		"clientEnable": true,
+		"value": false
+	},
+	"twoPageSideSwitch": {
+		"name": "twoPageSideSwitch",
+		"category": "Experimental",
+		"fullname": "Display two page invert",
+		"description": "Invert left/right two page display",
+		"type": "switch",
+		"tags": [],
+		"clientEnable": true,
+		"value": true
 	},
 	"imgSize": {
 		"name": "imgSize",
@@ -195,9 +286,10 @@
 		"fullname": "Image scale",
 		"description": "Image scaling, \\"100%\\" meaning will try to will fit image within screen without stretching, \\"Fit height\\" need \\"Left\\" settings Image position",
 		"type": "select",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": "100",
-		"selection": {"w":"Full width", "h":"Full height", "100":"100%", "80":"80%", "75":"75%", "60":"60%", "50":"50%", "35":"35%", "10":"10%"}
+		"selection": {"w":"Fit width", "h":"Fit height", "100":"100%", "80":"80%", "75":"75%", "60":"60%", "50":"50%", "35":"35%", "10":"10%"}
 	},
 	"imgPos": {
 		"name": "imgPos",
@@ -205,6 +297,7 @@
 		"fullname": "Image position",
 		"description": "Change image display position, maybe you need it?",
 		"type": "select",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": "c",
 		"selection": {"t":"Top", "c":"Center", "b":"Bottom", "l":"Left", "r":"Right", "tl":"Top Left", "tr":"Top Right", "bl":"Bottom Left", "br":"Bottom Right"}
@@ -215,6 +308,7 @@
 		"fullname": "Folder display limit",
 		"description": "Limit display entry in folder Select",
 		"type": "select",
+		"tags": [],
 		"clientEnable": true,
 		"value": "30",
 		"selection": {"False":"None", "100":"100", "75":"75", "50":"50", "30":"30", "25":"25", "20":"20", "15":"15", "10":"10"}
@@ -225,9 +319,21 @@
 		"fullname": "UI scale",
 		"description": "Set UI size, not perfect",
 		"type": "select",
+		"tags": ["shortcut"],
 		"clientEnable": true,
 		"value": "100",
 		"selection": {"300":"300%", "250":"250%", "200":"200%", "150":"150%", "120":"120%", "110": "110%", "100":"100%", "90":"90%", "80":"80%", "75":"75%", "60":"60%", "50":"50%", "35":"35%"}
+	},
+	"naviLocation": {
+		"name": "naviLocation",
+		"category": "Display",
+		"fullname": "Navigation bar location",
+		"description": "Navigation bar location",
+		"type": "select",
+		"tags": [],
+		"clientEnable": true,
+		"value": "t",
+		"selection": {"t":"Top", "b":"Bottom", "l":"Left", "r":"Right"}
 	},
 	"expRead": {
 		"name": "expRead",
@@ -235,6 +341,7 @@
 		"fullname": "Export read",
 		"description": "Export current session read data",
 		"type": "dataExport",
+		"tags": [],
 		"clientEnable": true,
 		"value": "read",
 		"display": "Download",
@@ -246,6 +353,7 @@
 		"fullname": "Import Read",
 		"description": "Import Read data to current session",
 		"type": "dataImport",
+		"tags": [],
 		"clientEnable": true,
 		"value": "read",
 		"display": "Choose File",
@@ -257,6 +365,7 @@
 		"fullname": "Export settings",
 		"description": "Export current session settings data",
 		"type": "dataExport",
+		"tags": [],
 		"clientEnable": true,
 		"value": "settings",
 		"display": "Download",
@@ -268,10 +377,83 @@
 		"fullname": "Import settings",
 		"description": "Import settings data to current session",
 		"type": "dataImport",
+		"tags": [],
 		"clientEnable": true,
 		"value": "settings",
 		"display": "Choose File",
 		"function": "importData"
+	},
+	"offineInstall": {
+		"name": "offineInstall",
+		"category": "Misc",
+		"fullname": "Install offline mode",
+		"description": "Make website available offline, Will reload website",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Install",
+		"function": "webServiceInstall"
+	},
+	"offineUninstall": {
+		"name": "offineUninstall",
+		"category": "Misc",
+		"fullname": "Uninstall offline mode",
+		"description": "Remove offline website, Will reload website",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Uninstall",
+		"function": "webServiceUninstall"
+	},
+	"deleteAllCache": {
+		"name": "deleteAllCache",
+		"category": "Misc",
+		"fullname": "Clear offline mode all cache",
+		"description": "Delete all offline mode cache, Will also \\"Uninstall offline mode\\"",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Delete",
+		"function": "cacheStorageDelAll"
+	},
+	"deleteCoreCache": {
+		"name": "deleteCoreCache",
+		"category": "Misc",
+		"fullname": "Clear offline mode core cache",
+		"description": "Delete all offline mode core file cache",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Delete",
+		"function": "cacheStorageDelCore"
+	},
+	"deleteOtherCache": {
+		"name": "deleteOtherCache",
+		"category": "Misc",
+		"fullname": "Clear offline mode other cache",
+		"description": "Delete all offline mode other file cache(request image list/request folder details)",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Delete",
+		"function": "cacheStorageDelOther"
+	},
+	"deleteImageCache": {
+		"name": "deleteImageCache",
+		"category": "Misc",
+		"fullname": "Clear offline mode image cache",
+		"description": "Delete all offline mode image file cache",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Delete",
+		"function": "cacheStorageDelImage"
 	},
 	"includeWord": {
 		"name": "includeWord",
@@ -279,6 +461,7 @@
 		"fullname": "Folder name whitelist",
 		"description": "Only show folder that name included these, *Need to reload folder\\nadd world by include \\",\\" at the end of word, include \\",\\" in word by add \\"\\\\\\" before \\",\\" (\\"\\\\,\\")\\nex: \\"    not, me,i will   ,  not\\\\, or is it?\\"\\n    will be ==> \\"not\\" | \\"me\\" | \\"i will\\" | \\"not, or is it?\\"",
 		"type": "text",
+		"tags": ["folderSetting"],
 		"clientEnable": true,
 		"value": "",
 		"display": "whitelist word"
@@ -289,9 +472,21 @@
 		"fullname": "Folder name blacklist",
 		"description": "Not show folder that name included these, *Need to reload folder\\nadd world by include \\",\\" at the end of word, include \\",\\" in word by add \\"\\\\\\" before \\",\\" (\\"\\\\,\\")\\nex: \\"    not, me,i will   ,  not\\\\, or is it?\\"\\n    will be ==> \\"not\\" | \\"me\\" | \\"i will\\" | \\"not, or is it?\\"",
 		"type": "text",
+		"tags": ["folderSetting"],
 		"clientEnable": true,
 		"value": "",
 		"display": "blacklist word"
+	},
+	"titleText": {
+		"name": "titleText",
+		"category": "Function",
+		"fullname": "Custom title text of page",
+		"description": "Custom title text of page(tab name). Available replace:\\n_{name}_ folder name, _{prna}_ parent folder name, _{path}_ folder path, _{img}_ image name, _{page}_ current image page, _{all}_ all image page",
+		"type": "text",
+		"tags": [],
+		"clientEnable": true,
+		"value": "_{page}_ | _{name}_ - _{prna}_ - Comic view",
+		"display": "your format here..."
 	},
 	"errorNote": {
 		"name": "errorNote",
@@ -299,6 +494,16 @@
 		"fullname": "In case of error or long loading...",
 		"description": "Try to click \\"Apply\\" and reload to reset settings, maybe it can help",
 		"type": "note",
+		"tags": [],
+		"clientEnable": true
+	},
+	"version": {
+		"name": "version",
+		"category": "Misc",
+		"fullname": "HCV Version: 1.3.0.7",
+		"description": "HCV Version: 1.3.0.7",
+		"type": "note",
+		"tags": [],
 		"clientEnable": true
 	},
 	"keyHide": {
@@ -307,6 +512,7 @@
 		"fullname": "Hide UI",
 		"description": "Hide any UI panel and/or hide or show navigation bar",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["SHIFT","Escape"],["H"]],
 		"function": "hide"
@@ -317,6 +523,7 @@
 		"fullname": "Toggle folder",
 		"description": "Hide or show Folder Panel",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["F"]],
 		"function": "folder"
@@ -327,6 +534,7 @@
 		"fullname": "Toggle settings",
 		"description": "Hide or show Settings Panel",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["J"]],
 		"function": "settings"
@@ -337,6 +545,7 @@
 		"fullname": "Toggle goto",
 		"description": "Hide or show Goto Panel",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["G"]],
 		"function": "goto"
@@ -347,6 +556,7 @@
 		"fullname": "Previous Image",
 		"description": "Go to previous image",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["ArrowLeft"],["A"]],
 		"function": "prev"
@@ -357,10 +567,10 @@
 		"fullname": "Next Image",
 		"description": "Go to next image",
 		"type": "key",
+		"tags": [],
 		"clientEnable": true,
 		"value": [["ArrowRight"],["D"]],
 		"function": "next"
 	}
-	
 }
 JSON;?>

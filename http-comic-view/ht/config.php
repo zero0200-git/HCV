@@ -66,6 +66,16 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": false
 },
+"folderRecusiveSwitch": {
+	"fullname": "Display recusive folder",
+	"clientEnable": true,
+	"value": false
+},
+"displayFromParentSwitch": {
+	"fullname": "Display from parent folder",
+	"clientEnable": true,
+	"value": false
+},
 "imgFirstSwitch": {
 	"fullname": "Show image folder first",
 	"clientEnable": true,
@@ -80,6 +90,16 @@ $settingsConfig = <<<JSON
 	"fullname": "Show loading popup",
 	"clientEnable": true,
 	"value": false
+},
+"disableAnimation": {
+	"fullname": "Disable animation",
+	"clientEnable": true,
+	"value": false
+},
+"animationTime": {
+	"fullname": "Animation time",
+	"clientEnable": true,
+	"value": "400"
 },
 "hideNaviSwitch": {
 	"fullname": "Hide \\"hide navigation\\" button",
@@ -121,6 +141,21 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": "#000000"
 },
+"twoPageSwitch": {
+	"fullname": "Display two page",
+	"clientEnable": true,
+	"value": false
+},
+"twoPageOffsetSwitch": {
+	"fullname": "Display two page offset",
+	"clientEnable": true,
+	"value": false
+},
+"twoPageSideSwitch": {
+	"fullname": "Display two page invert",
+	"clientEnable": true,
+	"value": true
+},
 "imgSize": {
 	"fullname": "Image scale",
 	"clientEnable": true,
@@ -132,7 +167,7 @@ $settingsConfig = <<<JSON
 	"value": "c"
 },
 "dirLimit": {
-	"fullname": "Folder display entry limit",
+	"fullname": "Folder display limit",
 	"clientEnable": true,
 	"value": "30"
 },
@@ -141,34 +176,82 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": "100"
 },
+"naviLocation": {
+	"fullname": "Navigation bar location",
+	"clientEnable": true,
+	"value": "t"
+},
 "expRead": {
 	"fullname": "Export read",
-	"clientEnable": true
+	"clientEnable": true,
+	"value": "read"
 },
 "impRead": {
-	"fullname": "Import read",
-	"clientEnable": true
+	"fullname": "Import Read",
+	"clientEnable": true,
+	"value": "read"
 },
 "expSettings": {
 	"fullname": "Export settings",
-	"clientEnable": true
+	"clientEnable": true,
+	"value": "settings"
 },
 "impSettings": {
 	"fullname": "Import settings",
-	"clientEnable": true
+	"clientEnable": true,
+	"value": "settings"
+},
+"offineInstall": {
+	"fullname": "Install offline mode",
+	"clientEnable": true,
+	"value": ""
+},
+"offineUninstall": {
+	"fullname": "Uninstall offline mode",
+	"clientEnable": true,
+	"value": ""
+},
+"deleteAllCache": {
+	"fullname": "Clear offline mode all cache",
+	"clientEnable": true,
+	"value": ""
+},
+"deleteCoreCache": {
+	"fullname": "Clear offline mode core cache",
+	"clientEnable": true,
+	"value": ""
+},
+"deleteOtherCache": {
+	"fullname": "Clear offline mode other cache",
+	"clientEnable": true,
+	"value": ""
+},
+"deleteImageCache": {
+	"fullname": "Clear offline mode image cache",
+	"clientEnable": true,
+	"value": ""
 },
 "includeWord": {
 	"fullname": "Folder name whitelist",
 	"clientEnable": true,
-	"value": "",
+	"value": ""
 },
 "blockWord": {
 	"fullname": "Folder name blacklist",
 	"clientEnable": true,
 	"value": ""
 },
+"titleText": {
+	"fullname": "Custom title text of page",
+	"clientEnable": true,
+	"value": "_{page}_ | _{name}_ - _{prna}_ - Comic view"
+},
 "errorNote": {
 	"fullname": "In case of error or long loading...",
+	"clientEnable": true
+},
+"version": {
+	"fullname": "HCV Version: 1.3.0.7",
 	"clientEnable": true
 },
 "keyHide": {

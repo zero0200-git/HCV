@@ -30,7 +30,7 @@ if(strtolower($ib)=="b"){
 function getSubDir($lo) {
 $dir=array("subDir"=>0,"subDirList"=>array(),"dirValid"=>array(),"dirNotValid"=>array());
 $arr=array_values(array_diff(scandir(substr($lo,0,-1)), array('..', '.')));
-natsort($arr);
+natcasesort($arr);
 foreach ($arr as $chd) {
 if (is_dir($lo.$chd)&&checkIB($chd,"i")===true&&checkIB($chd,"b")===false) {
 	if (getPic($lo.$chd)!==array()) {
@@ -63,7 +63,7 @@ function getSubDirResc($lo,$e=null) {
 $parent_sp="_s.pp,";
 $child_sp="_s.pc,";
 $arr=array_values(array_diff(scandir(substr($lo,0,-1)), array('..', '.')));
-natsort($arr);
+natcasesort($arr);
 $pic=getPic($lo);
 $sub=getSubDirNum($lo."/");
 if ($pic!==array()) {
@@ -108,7 +108,7 @@ foreach(glob(str_replace(['[',']',"\f[","\f]"], ["\f[","\f]",'[[]','[]]'], $lo).
 	$re[]=str_replace($lo."/","",$file);
 }
 }
-natsort($re);
+natcasesort($re);
 return array_values($re);
 }
 
@@ -150,6 +150,12 @@ if ($e===1) {
 	$sDir=getSubDir($lo);
 	$pic=getPic($lo);global $inclWL;global $blockWL;
 	$ar=array("path"=>$lo, "name"=>getDirName($lo), "picList"=>getPic($lo), "picNum"=>sizeof($pic), "previousDir"=>$pnbDir["previous"], "nextDir"=>$pnbDir["next"], "backDir"=>$pnbDir["back"], "subDir"=>$sDir["subDir"], "dirList"=>$sDir["subDirList"], "dirValid"=>$sDir["dirValid"], "dirNotValid"=>$sDir["dirNotValid"]);
+} elseif ($e===2) {
+	$lo=preg_replace("/(\\\\|\/)+/","/",$lo."/");
+	$pnbDir=getPNB($lo);
+	$sDir=getSubDirResc($lo);
+	$pic=getPic($lo);global $inclWL;global $blockWL;
+	$ar=array("path"=>$lo, "name"=>getDirName($lo), "picList"=>getPic($lo), "picNum"=>sizeof($pic), "previousDir"=>$pnbDir["previous"], "nextDir"=>$pnbDir["next"], "backDir"=>$pnbDir["back"], "subDir"=>$sDir["subDir"], "allDirNo"=>$sDir["num"], "dirList"=>$sDir["list"], "dirValid"=>$sDir["valid"], "dirNotValid"=>$sDir["notvalid"]);
 } else {
 	$sDir=getSubDirResc($lo);
 	$ar=array("path"=>$lo, "name"=>getDirName($lo), "allDirNo"=>$sDir["num"], "dirList"=>$sDir["list"], "dirValid"=>$sDir["valid"], "dirNotValid"=>$sDir["notvalid"]);
@@ -194,11 +200,12 @@ return $settings;
 }
 
 
-if($_POST["i"]!=null){$inclWL=array_merge($inclWL,explode("_s.spl.",str_replace("_s.quote.",",",preg_replace("/\s*,\s*/","_s.spl.",preg_replace("/\\\\,/","_s.quote.",preg_replace("/^\s*|\s*$/","",$_POST["i"]))))));}
-if($_POST["b"]!=null){$blockWL=array_merge($blockWL,explode("_s.spl.",str_replace("_s.quote.",",",preg_replace("/\s*,\s*/","_s.spl.",preg_replace("/\\\\,/","_s.quote.",preg_replace("/^\s*|\s*$/","",$_POST["b"]))))));}
-if (strtolower($_POST["type"])=="main"){echo json_encode($MAIN, JSON_UNESCAPED_UNICODE);}
-elseif (strtolower($_POST["type"])=="all"){echo json_encode(getCurrentDir($MAIN), JSON_UNESCAPED_UNICODE);}
-elseif (strtolower($_POST["type"])=="specific" && $_POST["p"]!=null && (strtolower($MAIN)==strtolower($_POST["p"]) || strtolower($MAIN)==strtolower($_POST["p"]) || is_dir($MAIN.$_POST["p"])==true || is_dir($MAIN.substr_replace($_POST["p"],"",stripos($_POST["p"],$MAIN),stripos($_POST["p"],$MAIN)+strlen($MAIN)))==true)){echo json_encode(getCurrentDir($_POST["p"],1), JSON_UNESCAPED_UNICODE);}
-elseif (strtolower($_POST["type"])=="settings"){echo json_encode(getSettingValue("all"), JSON_UNESCAPED_UNICODE);}
+if($_GET["i"]!=null){$inclWL=array_merge($inclWL,explode("_s.spl.",str_replace("_s.quote.",",",preg_replace("/\s*,\s*/","_s.spl.",preg_replace("/\\\\,/","_s.quote.",preg_replace("/^\s*|\s*$/","",$_GET["i"]))))));}
+if($_GET["b"]!=null){$blockWL=array_merge($blockWL,explode("_s.spl.",str_replace("_s.quote.",",",preg_replace("/\s*,\s*/","_s.spl.",preg_replace("/\\\\,/","_s.quote.",preg_replace("/^\s*|\s*$/","",$_GET["b"]))))));}
+if (strtolower($_GET["type"])=="main"){echo json_encode($MAIN, JSON_UNESCAPED_UNICODE);}
+elseif (strtolower($_GET["type"])=="all"){echo json_encode(getCurrentDir($MAIN), JSON_UNESCAPED_UNICODE);}
+elseif (strtolower($_GET["type"])=="specific" && $_GET["p"]!=null && (strtolower($MAIN)==strtolower($_GET["p"]) || strtolower($MAIN)==strtolower($_GET["p"]) || is_dir($MAIN.$_GET["p"])==true || is_dir($MAIN.substr_replace($_GET["p"],"",stripos($_GET["p"],$MAIN),stripos($_GET["p"],$MAIN)+strlen($MAIN)))==true)){echo json_encode(getCurrentDir($_GET["p"],1), JSON_UNESCAPED_UNICODE);}
+elseif (strtolower($_GET["type"])=="specificrecusive" && $_GET["p"]!=null && (strtolower($MAIN)==strtolower($_GET["p"]) || strtolower($MAIN)==strtolower($_GET["p"]) || is_dir($MAIN.$_GET["p"])==true || is_dir($MAIN.substr_replace($_GET["p"],"",stripos($_GET["p"],$MAIN),stripos($_GET["p"],$MAIN)+strlen($MAIN)))==true)){echo json_encode(getCurrentDir($_GET["p"],2), JSON_UNESCAPED_UNICODE);}
+elseif (strtolower($_GET["type"])=="settings"){echo json_encode(getSettingValue("all"), JSON_UNESCAPED_UNICODE);}
 
 ?>

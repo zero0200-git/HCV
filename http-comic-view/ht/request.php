@@ -104,7 +104,7 @@ return $re;
 function getPic($lo) {
 $re=array();
 foreach(glob(str_replace(['[',']',"\f[","\f]"], ["\f[","\f]",'[[]','[]]'], $lo)."/*.*") as $file) {
-	if(preg_match('/(\.png|\.jpg|\.jpeg|\.webp)/i', substr($file,-5))) {
+	if(preg_match('/(\.png|\.jpg|\.jpeg|\.webp|\.gif)/i', substr($file,-5))) {
 	$re[]=str_replace($lo."/","",$file);
 }
 }

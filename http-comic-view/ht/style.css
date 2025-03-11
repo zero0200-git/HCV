@@ -30,8 +30,10 @@ overflow:hidden;
 }
 *, ::after, ::before{
 box-sizing:border-box;
+transform-origin:center;
 transition:0.4s cubic-bezier(0.6,0,0.4,1);
 animation:0.4s cubic-bezier(0.6,0,0.4,1) 1;
+scroll-behavior:smooth;
 }
 a{
 text-decoration:none;
@@ -309,11 +311,20 @@ bottom:0;right:0;left:0;
 padding-top:0.4rem;
 flex-direction:row;
 }
+#navWarpper.t.float,#navWarpper.b.float{
+margin:1rem auto;
+}
 #navWarpper.t>*:nth-child(1),#navWarpper.b>*:nth-child(1),#navWarpper.t[data-hide=true] .navHide,#navWarpper.b[data-hide=true] .navHide{
 margin-left:auto;
 }
 #navWarpper.t>*:nth-last-child(2),#navWarpper.b>*:nth-last-child(2){
 margin-right:auto;
+}
+#navWarpper.t.float>*:nth-child(1),#navWarpper.b.float>*:nth-child(1),#navWarpper.t.float[data-hide=true] .navHide,#navWarpper.b.float[data-hide=true] .navHide{
+margin-left:none;
+}
+#navWarpper.t.float>*:nth-last-child(2),#navWarpper.b.float>*:nth-last-child(2){
+margin-right:none;
 }
 #navWarpper.t>#gotoOpen>[data-value=space],#navWarpper.b>#gotoOpen>[data-value=space]{
 margin:0 0.6rem;
@@ -330,6 +341,9 @@ top:0;bottom:0;right:0;
 padding-left:0.4rem;
 flex-direction:column;
 }
+#navWarpper.r.float,#navWarpper.l.float{
+margin:auto 1rem;
+}
 #navWarpper.l>#gotoOpen,#navWarpper.r>#gotoOpen{
 flex-direction:column;
 }
@@ -338,6 +352,12 @@ margin-top:auto;
 }
 #navWarpper.l>*:nth-last-child(2),#navWarpper.r>*:nth-last-child(2){
 margin-bottom:auto;
+}
+#navWarpper.l.float>*:nth-child(1),#navWarpper.r.float>*:nth-child(1),#navWarpper.l.float[data-hide=true] .navHide,#navWarpper.r.float[data-hide=true] .navHide{
+margin-top:none;
+}
+#navWarpper.l.float>*:nth-last-child(2),#navWarpper.r.float>*:nth-last-child(2){
+margin-bottom:none;
 }
 #navWarpper.l>#gotoOpen>span{
 writing-mode:vertical-lr;
@@ -349,6 +369,13 @@ text-orientation:upright;
 }
 #navWarpper.l>#gotoOpen>[data-value=space],#navWarpper.r>#gotoOpen>[data-value=space]{
 margin:0.4rem 0;
+}
+#navWarpper.float{
+background:rgba(34,34,34,0.47);
+padding:0;
+width:fit-content;
+height:fit-content;
+border-radius:2rem;
 }
 #imgWarpper{
 overflow:auto;
@@ -476,11 +503,11 @@ margin:2%;
 #gotoOpen{
 font-size:1.6rem;
 }
-#settingsWarpper .containerCon{
+#settingsWarpper .containerCon,#dlqWarpper .containerCon{
 flex-direction:column;
 flex-basis:100%;
 }
-.settingsList{
+.settingsList,.dlqList{
 display:inherit;
 justify-content:space-between;
 align-items:stretch;
@@ -491,19 +518,19 @@ border-bottom:.06rem solid rgba(255,255,255,.4);
 .settingsList.hide{
 display:none;
 }
-.settingsList:last-of-type{
+.settingsList:last-of-type,.dlqList:last-of-type{
 border-bottom:none;
 }
-.settingsList>*{
+.settingsList>*,.dlqList>*{
 margin:0 .25rem;
 }
-.settingsName{
+.settingsName,.dlqName{
 display:flex;
 flex-direction:column;
 flex-wrap:nowrap;
 flex:2;
 }
-.settingsName>*:nth-child(2){
+.settingsName>*:nth-child(2),.dlqName>*:nth-child(2){
 font-size:.9rem;
 overflow:hidden;
 max-height:0;
@@ -511,12 +538,12 @@ opacity:0;
 margin-top:0;
 border-top:.06rem solid rgba(255,255,255,.4);
 }
-.settingsName>.show{
+.settingsName>.show,.dlqName>.show{
 max-height:10rem;
 opacity:1;
 margin-top:0.4rem;
 }
-.settingsCat{
+.settingsCat,.dlqAction{
 display:flex;
 margin-right:auto;
 flex-direction:row;
@@ -591,7 +618,7 @@ color:rgba(255,255,255,1);
 opacity:0.6;
 border-radius:2rem;
 }
-.folderListNode>[data-node-type=name]{
+.folderListNode>[data-node-type=name],.folderListNode>[data-node-type=context]{
 color:rgba(255,255,255,1);
 background-color:rgba(0,0,0,1);
 background-color:rgba(0,0,0,0.53);
@@ -625,6 +652,26 @@ font-size:1rem;
 min-height:100%;
 -webkit-backdrop-filter:blur(0.2rem);
 backdrop-filter:blur(0.2rem);
+}
+.folderListNode>[data-node-type=context]{
+display:none;
+z-index:10;
+min-height:100%;
+max-height:100%;
+flex-direction:column;
+justify-content:flex-end;
+}
+.folderListNode.contextOpen>[data-node-type=context]{
+display:flex;
+-webkit-backdrop-filter:blur(0.2rem);
+backdrop-filter:blur(0.2rem);
+}
+.folderListNode.contextOpen>[data-node-type=context]>.buttonText{
+font-size:1rem;
+line-height:1.2rem;
+padding:0.2rem 0;
+margin:0.2rem 0;
+word-break:break-word;
 }
 #folderListWarpper .containerSubHead .button.select{
 background-color:rgba(0,0,0,0.3);
@@ -660,4 +707,11 @@ opacity:1;
 }
 #popWarpper>.remove,#popWarpper>.loaded,#popWarpper>.error{
 opacity:0;
+}
+@keyframes loading{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+.loading{
+animation:loading infinite linear;
 }

@@ -61,6 +61,11 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": false
 },
+"onlineFirst": {
+	"fullname": "Show online data first",
+	"clientEnable": true,
+	"value": false
+},
 "displayAllSwitch": {
 	"fullname": "Display all folder",
 	"clientEnable": true,
@@ -156,6 +161,11 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": true
 },
+"imgDisplayType": {
+	"fullname": "Image display type",
+	"clientEnable": true,
+	"value": "normal"
+},
 "imgSize": {
 	"fullname": "Image scale",
 	"clientEnable": true,
@@ -181,6 +191,11 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": "t"
 },
+"naviStyle": {
+	"fullname": "Navigation bar style",
+	"clientEnable": true,
+	"value": "t"
+},
 "expRead": {
 	"fullname": "Export read",
 	"clientEnable": true,
@@ -201,13 +216,28 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": "settings"
 },
-"offineInstall": {
-	"fullname": "Install offline mode",
+"dlqOpen": {
+	"fullname": "Open Download queue",
 	"clientEnable": true,
 	"value": ""
 },
+"dlOpen": {
+	"fullname": "Open Downloaded",
+	"clientEnable": true,
+	"value": ""
+},
+"offineEnable": {
+	"fullname": "Enable offline mode",
+	"clientEnable": true,
+	"value": true
+},
 "offineUninstall": {
-	"fullname": "Uninstall offline mode",
+	"fullname": "Uninstall/Update offline mode",
+	"clientEnable": true,
+	"value": ""
+},
+"reloadWeb": {
+	"fullname": "Reload Website",
 	"clientEnable": true,
 	"value": ""
 },
@@ -231,6 +261,11 @@ $settingsConfig = <<<JSON
 	"clientEnable": true,
 	"value": ""
 },
+"storageRemaining": {
+	"fullname": "Storage for web remaining",
+	"clientEnable": true,
+	"value": ""
+},
 "includeWord": {
 	"fullname": "Folder name whitelist",
 	"clientEnable": true,
@@ -251,7 +286,7 @@ $settingsConfig = <<<JSON
 	"clientEnable": true
 },
 "version": {
-	"fullname": "HCV Version: 1.3.0.7",
+	"fullname": "HCV Version: 1.3.1.3",
 	"clientEnable": true
 },
 "keyHide": {
@@ -262,12 +297,12 @@ $settingsConfig = <<<JSON
 "keyFolder": {
 	"fullname": "Toggle folder",
 	"clientEnable": true,
-	"value": [["F"]]
+	"value": [["SHIFT","F"]]
 },
 "keySettings": {
 	"fullname": "Toggle settings",
 	"clientEnable": true,
-	"value": [["J"]]
+	"value": [["SHIFT","J"]]
 },
 "keyGoto": {
 	"fullname": "Toggle goto",
@@ -283,6 +318,21 @@ $settingsConfig = <<<JSON
 	"fullname": "Next Image",
 	"clientEnable": true,
 	"value": [["ArrowRight"],["D"]]
+},
+"keyFullscreen": {
+	"fullname": "Fullscreen",
+	"clientEnable": true,
+	"value": [["CTRL,F"]]
+},
+"keyAutoFolder": {
+	"fullname": "Auto change folder",
+	"clientEnable": true,
+	"value": [["CTRL,SHIFT,F"]]
+},
+"keyPopup": {
+	"fullname": "Loading popup",
+	"clientEnable": true,
+	"value": [["P"]]
 }
 }
 JSON;

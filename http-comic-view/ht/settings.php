@@ -83,6 +83,16 @@
 		"clientEnable": true,
 		"value": false
 	},
+	"onlineFirst": {
+		"name": "onlineFirst",
+		"category": "Function",
+		"fullname": "Show online data first",
+		"description": "Show online data first when load folder",
+		"type": "switch",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": false
+	},
 	"displayAllSwitch": {
 		"name": "displayAllSwitch",
 		"category": "Display",
@@ -147,7 +157,7 @@
 		"name": "disableAnimation",
 		"category": "Display",
 		"fullname": "Disable animation",
-		"description": "Disable all animation *except \\"Show loading popup\\"*",
+		"description": "Disable all animation",
 		"type": "switch",
 		"tags": ["shortcut"],
 		"clientEnable": true,
@@ -280,6 +290,17 @@
 		"clientEnable": true,
 		"value": true
 	},
+	"imgDisplayType": {
+		"name": "imgDisplayType",
+		"category": "Display",
+		"fullname": "Image display type",
+		"description": "Image display type",
+		"type": "select",
+		"tags": ["shortcut"],
+		"clientEnable": true,
+		"value": "normal",
+		"selection": {"normal":"Normal", "webtoon":"Webtoon (beta)"}
+	},
 	"imgSize": {
 		"name": "imgSize",
 		"category": "Display",
@@ -335,6 +356,17 @@
 		"value": "t",
 		"selection": {"t":"Top", "b":"Bottom", "l":"Left", "r":"Right"}
 	},
+	"naviStyle": {
+		"name": "naviStyle",
+		"category": "Display",
+		"fullname": "Navigation bar style",
+		"description": "Navigation bar style",
+		"type": "select",
+		"tags": [],
+		"clientEnable": true,
+		"value": "t",
+		"selection": {"normal":"Normal", "float":"Float"}
+	},
 	"expRead": {
 		"name": "expRead",
 		"category": "Misc",
@@ -383,35 +415,69 @@
 		"display": "Choose File",
 		"function": "importData"
 	},
-	"offineInstall": {
-		"name": "offineInstall",
+	"dlqOpen": {
+		"name": "dlqOpen",
 		"category": "Misc",
-		"fullname": "Install offline mode",
-		"description": "Make website available offline, Will reload website",
+		"fullname": "Open Download queue",
+		"description": "Open Download queue (Note: \\"Download queue\\" is cache)",
 		"type": "funcButton",
 		"tags": ["service"],
 		"clientEnable": true,
 		"value": "",
-		"display": "Install",
-		"function": "webServiceInstall"
+		"display": "Open",
+		"function": "opendlq"
+	},
+	"dlOpen": {
+		"name": "dlOpen",
+		"category": "Misc",
+		"fullname": "Open Downloaded",
+		"description": "Open Downloaded (Note: \\"Downloaded queue\\" is cache)",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Open",
+		"function": "opendl"
+	},
+	"offineEnable": {
+		"name": "offineEnable",
+		"category": "Misc",
+		"fullname": "Enable offline mode",
+		"description": "Make website available offline, Will reload website",
+		"type": "switch",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": true
 	},
 	"offineUninstall": {
 		"name": "offineUninstall",
 		"category": "Misc",
-		"fullname": "Uninstall offline mode",
-		"description": "Remove offline website, Will reload website",
+		"fullname": "Uninstall/Update offline mode",
+		"description": "Update offline mode file if \\"Enable offline mode\\" else Unintall offline mode, Will reload website",
 		"type": "funcButton",
 		"tags": ["service"],
 		"clientEnable": true,
 		"value": "",
-		"display": "Uninstall",
-		"function": "webServiceUninstall"
+		"display": "Unintall",
+		"function": "webServiceUpdate"
+	},
+	"reloadWeb": {
+		"name": "reloadWeb",
+		"category": "Misc",
+		"fullname": "Reload Website",
+		"description": "Just A Reload Button",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Reload",
+		"function": "webReload"
 	},
 	"deleteAllCache": {
 		"name": "deleteAllCache",
 		"category": "Misc",
 		"fullname": "Clear offline mode all cache",
-		"description": "Delete all offline mode cache, Will also \\"Uninstall offline mode\\"",
+		"description": "Delete all offline mode cache",
 		"type": "funcButton",
 		"tags": ["service"],
 		"clientEnable": true,
@@ -454,6 +520,18 @@
 		"value": "",
 		"display": "Delete",
 		"function": "cacheStorageDelImage"
+	},
+	"storageRemaining": {
+		"name": "storageRemaining",
+		"category": "Misc",
+		"fullname": "Storage for web remaining",
+		"description": "...",
+		"type": "funcButton",
+		"tags": ["service"],
+		"clientEnable": true,
+		"value": "",
+		"display": "Update",
+		"function": "updateStorageRemaining"
 	},
 	"includeWord": {
 		"name": "includeWord",
@@ -500,8 +578,8 @@
 	"version": {
 		"name": "version",
 		"category": "Misc",
-		"fullname": "HCV Version: 1.3.0.7",
-		"description": "HCV Version: 1.3.0.7",
+		"fullname": "HCV Version: 1.3.1.3",
+		"description": "HCV Version: 1.3.1.3",
 		"type": "note",
 		"tags": [],
 		"clientEnable": true
@@ -525,7 +603,7 @@
 		"type": "key",
 		"tags": [],
 		"clientEnable": true,
-		"value": [["F"]],
+		"value": [["SHIFT","F"]],
 		"function": "folder"
 	},
 	"keySettings": {
@@ -536,7 +614,7 @@
 		"type": "key",
 		"tags": [],
 		"clientEnable": true,
-		"value": [["J"]],
+		"value": [["SHIFT","J"]],
 		"function": "settings"
 	},
 	"keyGoto": {
@@ -571,6 +649,39 @@
 		"clientEnable": true,
 		"value": [["ArrowRight"],["D"]],
 		"function": "next"
+	},
+	"keyFullscreen": {
+		"name": "keyFullscreen",
+		"category": "Shortcut",
+		"fullname": "Fullscreen",
+		"description": "Change \\"Fullscreen\\" setting",
+		"type": "key",
+		"tags": [],
+		"clientEnable": true,
+		"value": [["CTRL,F"]],
+		"function": "fullscreen"
+	},
+	"keyAutoFolder": {
+		"name": "keyAutoFolder",
+		"category": "Shortcut",
+		"fullname": "Auto change folder",
+		"description": "Change \\"Auto Change Folder\\" setting",
+		"type": "key",
+		"tags": [],
+		"clientEnable": true,
+		"value": [["CTRL,SHIFT,F"]],
+		"function": "autoFolder"
+	},
+	"keyPopup": {
+		"name": "keyPopup",
+		"category": "Shortcut",
+		"fullname": "Loading popup",
+		"description": "Change \\"Show loading popup\\" setting",
+		"type": "key",
+		"tags": [],
+		"clientEnable": true,
+		"value": [["P"]],
+		"function": "Popup"
 	}
 }
 JSON;?>

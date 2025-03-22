@@ -906,8 +906,8 @@ Object.assign(hcv[hcvVar],objValue);
 if(hcvVar=="settings"){
 setSettings();applySettings();
 if(hcv.settings.lcSettingsSwitch==true){localStorage.setItem("settings",JSON.stringify(hcv.settings))};
-} else if(hcvVar=="read"){
-if(hcv.settings.lcReadSwitch==true){localStorage.setItem("read",JSON.stringify(hcv.readnew))};
+} else if(hcvVar=="readnew"){
+if(hcv.settings.lcReadSwitch==true){localStorage.setItem("readnew",JSON.stringify(hcv.readnew))};
 }
 }
 function imageTap(m){
